@@ -497,3 +497,58 @@ public class EmployeeSQLProvider {
 }
 ```
 
+
+
+
+
+## mybatis-plus
+
+> 坑多,文档不对版
+
+### 全局配置
+
+```properties
+# @tableId 主键策略
+mybatis-plus.global-config.db-config.id-type=auto
+# 表前缀
+mybatis-plus.global-config.db-config.table-prefix=tb_
+```
+
+### @TableName
+
+### @TableId
+
+### @TableField
+
+### 分页查询
+
+> 3.2.0 必须配置分页插件
+
+```java
+@SpringBootApplication
+@MapperScan("com.mp.mapper")
+public class App {
+    @Bean
+    public PaginationInterceptor paginationInterceptor(){
+        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+        return paginationInterceptor;
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(App.class,args);
+    }
+}
+```
+
+```java
+Brand brand = new Brand();
+brand.setName("x");
+
+IPage<Brand> brands = brandMapper.selectPage(new Page<>(1, 3), new QueryWrapper<Brand>(brand).like("name","O"));
+
+
+System.out.println(brands.getRecords());
+brands.getRecords().forEach(System.out::println);
+System.out.println(brands.getSize());
+```
+
