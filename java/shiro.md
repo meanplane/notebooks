@@ -61,6 +61,8 @@ Shiro是apache旗下一一个开源框架，它将软件系统的安全认证相
 
 ​	**CryptoGraphy 即密码管理**, shiro提供了一套加密/解密的组件, 方便开发. 比如提供常用的散列, 加解密等功能.
 
+
+
 ## 4.shiro中的认证
 
 ### 4.1认证：
@@ -79,6 +81,23 @@ Shiro是apache旗下一一个开源框架，它将软件系统的安全认证相
 ### 4.3认证流程图
 
 ![shiro](pic/shiro-1.png)
+
+1. 最终执行用户名比较 SimpleAccountRealm
+
+   doGetAuthenticationInfo 在这个方法中完成用户名校验
+
+2. 最终密码校验是在AuthenticatingRealm
+
+   assertCredentialsMatch
+
+
+
+总结
+
++ AuthenticatingRealm **认证** realm  doGetAuthenticationInfo
++ AuthorizingRealm **授权** realm doGetAuthorizationInfo
+
+
 
 ### 4.4 自定义realm
 
@@ -199,6 +218,10 @@ public class shiroTest {
         }
     }
 }
+
+
+// UnknownAccountException  用户不存在
+// IncorrectCredentialsException  密码错误
 ```
 
 ## 认证流程
