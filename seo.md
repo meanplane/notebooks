@@ -13,7 +13,7 @@
 <input type="hidden" name="" id="J_ApplicationType" value="2"/>
 <input type="hidden" id="pinpai_brandId" value="0"/>
 <input type="hidden" id="tb_id" value="0"/>
-  
+  eeeee
   
   // 
   (function(){
